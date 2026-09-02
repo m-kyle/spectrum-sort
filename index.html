@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f087d" />
+    <title>Spectrum Sort</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro" aria-labelledby="game-title">
+        <div class="eyebrow"><span class="eyebrow-mark"></span> A colour puzzle</div>
+        <h1 id="game-title">Spectrum<br /><em>Sort</em></h1>
+        <p class="description">A colourful puzzle of order, rhythm, and flow. Put every colour back where it belongs.</p>
+        <div class="rule"></div>
+        <div class="stats" aria-live="polite">
+          <div class="stat"><span class="stat-label">Moves</span><strong id="moves">0</strong></div>
+          <div class="stat"><span class="stat-label">Placed</span><strong><span id="placed">5</span><small> / 25</small></strong></div>
+        </div>
+        <div class="reset-actions">
+          <button class="reset-button" id="reset-button" type="button"><span class="shuffle-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></span> New grid</button>
+          <!-- <button class="reset-button" id="solve-button" type="button"><span aria-hidden="true">✓</span> Solve (test)</button> -->
+        </div>
+        <button class="settings-toggle" id="settings-toggle" type="button" aria-expanded="false" aria-controls="settings-panel" title="Open settings">
+          <span class="burger-icon" aria-hidden="true"><i></i><i></i><i></i></span><span class="settings-toggle-label">Settings</span>
+        </button>
+        <div class="settings-panel" id="settings-panel" hidden>
+          <div class="settings-heading">Settings</div>
+          <fieldset class="setting-group">
+            <legend>Grid size</legend>
+            <div class="size-options" id="size-options">
+              <button type="button" data-size="4">4x4</button>
+              <button type="button" data-size="5" class="active">5x5</button>
+              <button type="button" data-size="7">7x7</button>
+            </div>
+          </fieldset>
+          <fieldset class="setting-group">
+            <legend>Palette</legend>
+            <div class="size-options palette-options" id="palette-options">
+              <button type="button" data-palette="pastel">Pastel</button>
+              <button type="button" data-palette="bold" class="active">Bold</button>
+              <button type="button" data-palette="mono">Mono</button>
+            </div>
+          </fieldset>
+          <fieldset class="setting-group">
+            <legend>Theme</legend>
+            <div class="theme-options" id="theme-options">
+              <div class="theme-section-label">Dark themes</div>
+              <button type="button" data-theme="obsidian"><span class="theme-swatch obsidian-swatch"></span>Obsidian</button>
+              <button type="button" data-theme="midnight" class="active"><span class="theme-swatch midnight-swatch"></span>Midnight</button>
+              <button type="button" data-theme="terminal"><span class="theme-swatch terminal-swatch"></span>Terminal</button>
+              <button type="button" data-theme="ember"><span class="theme-swatch ember-swatch"></span>Ember</button>
+              <div class="theme-section-label">Light themes</div>
+              <button type="button" data-theme="newspaper"><span class="theme-swatch newspaper-swatch"></span>Newspaper</button>
+              <button type="button" data-theme="mint"><span class="theme-swatch mint-swatch"></span>Mint</button>
+              <button type="button" data-theme="coral"><span class="theme-swatch coral-swatch"></span>Coral</button>
+            </div>
+          </fieldset>
+          <fieldset class="setting-group">
+            <legend>Puzzle seed</legend>
+            <div class="seed-row">
+              <input type="text" id="seed-code" class="seed-field" readonly aria-label="Current puzzle seed" />
+              <button type="button" class="seed-button" id="seed-copy">Copy</button>
+            </div>
+            <div class="seed-row">
+              <input type="text" id="seed-input" class="seed-field" placeholder="Paste a seed" aria-label="Seed to load" />
+              <button type="button" class="seed-button" id="seed-load">Load</button>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="puzzle-area" aria-label="Spectrum Sort puzzle">
+        <div class="puzzle-header"><span id="status-text">Find the flow</span><span class="drag-hint">Drag to arrange <b>·</b> Click to swap</span></div>
+        <div class="board-wrap">
+          <div class="board" id="board" role="grid" aria-label="5 by 5 colour tile grid"></div>
+          <div class="completion" id="completion" aria-live="polite" hidden>
+            <div class="completion-card">
+              <span class="completion-spark">✦</span>
+              <span><strong>Spectrum complete</strong><small>Every colour is in its place.</small></span>
+              <small class="completion-stats" id="completion-stats"></small>
+              <div class="completion-actions">
+                <button type="button" class="completion-button" id="completion-view">View puzzle</button>
+                <button type="button" class="completion-button" id="completion-restart">Play new game</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
